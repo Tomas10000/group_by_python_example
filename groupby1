@@ -1,0 +1,18 @@
+##Creamos un dataset de prueba
+import pandas as pd
+import numpy as np
+df = pd.DataFrame({
+         'hID': [101, 102, 103, 101, 102, 104, 105, 101],
+         'dID': [10, 11, 12, 10, 11, 10, 12, 10],
+         'uID': ['James', 'Henry', 'Abe', 'James', 'Henry', 'Brian', 'Claude', 'James'],
+         'mID': ['A', 'B', 'A', 'B', 'A', 'A', 'A', 'C']
+})
+
+
+##Filtramos aquellas columnas utiles para el análisis
+df=df[['uID','dID','hID','mID']]
+df
+
+##Agrupamos por la columna uID, calculamos la media de "dID", la suma de "hID" y contar los distintos valores agrupados de la columna mID
+df=df.groupby(['uID']).agg({'dID': "mean",'hID': "sum","mID": pd.Series.nunique})
+df
